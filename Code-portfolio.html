@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | BTS SIO SLAM</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-color: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        /* --- BARRE DE NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #334155;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* --- ACCUEIL --- */
+        #accueil {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            padding: 4rem 0;
+            border-bottom: 1px solid #334155;
+            flex-wrap: wrap-reverse;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .typed-text {
+            color: var(--accent-color);
+        }
+
+        .hero-avatar img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #334155;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 0.5rem;
+        }
+
+        /* --- TIMELINE / PARCOURS --- */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .timeline-item {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+
+        .timeline-item h3 {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .timeline-item .date {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- COMPÉTENCES --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        /* --- CONTACT --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-info {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--card-bg);
+            border: 1px solid #334155;
+            border-radius: 5px;
+            color: var(--text-color);
+        }
+
+        input:focus, textarea:focus {
+            outline: 1px solid var(--accent-color);
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav>
+        <div class="logo">Portfolio SLAM</div>
+        <ul class="nav-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#profil">Profil</a></li>
+            <li><a href="#parcours">Parcours</a></li>
+            <li><a href="#competences">Compétences</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <!-- ACCUEIL -->
+        <section id="accueil">
+            <div class="hero-text">
+                <h1>Bonjour, je suis <br><span id="name" class="typed-text"></span></h1>
+                <p style="color: var(--text-dim); margin-top: 0.5rem;">
+                    Élève en BTS SIO (Services Informatiques aux Organisations) — Option SLAM
+                </p>
+                <a href="#contact" class="btn" style="display: inline-block; margin-top: 1.5rem; text-decoration: none;">Me contacter</a>
+            </div>
+            <div class="hero-avatar">
+                <!-- Remplace 'ma-photo.jpg' par le nom du fichier de ta photo -->
+                <img src="ma-photo.jpg" alt="Photo de profil">
+            </div>
+        </section>
+
+        <!-- PROFIL -->
+        <section id="profil">
+            <h2>Profil</h2>
+            <p>
+                Actuellement étudiant en première année de <strong>BTS SIO option SLAM</strong> (Solutions Logicielles et Applications Métiers), je passionne pour la conception logicielle, le développement d'applications web et la gestion de données.
+            </p>
+            <p style="margin-top: 1rem; color: var(--text-dim);">
+                À la recherche d'un stage conventionné pour valider ma première année d'études et mettre en pratique mes connaissances théoriques dans un environnement professionnel.
+            </p>
+        </section>
+
+        <!-- PARCOURS -->
+        <section id="parcours">
+            <h2>Parcours</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>BTS SIO option SLAM</h3>
+                    <p class="date">2026 - Présent (En cours)</p>
+                    <p>Apprentissage des bases du développement orienté objet, de la modélisation de bases de données et de l'intégration web.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Baccalauréat</h3>
+                    <p class="date">Obtenu en 2026</p>
+                    <p>Diplôme de fin d'études secondaires.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPÉTENCES -->
+        <section id="competences">
+            <h2>Compétences (1ère année SLAM)</h2>
+            <div class="skills-grid">
+                
+                <div class="skill-card">
+                    <h3>Développement Web</h3>
+                    <div class="tags">
+                        <span class="tag">HTML5 / CSS3</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">PHP</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Bases de Données</h3>
+                    <div class="tags">
+                        <span class="tag">SQL</span>
+                        <span class="tag">MySQL / MariaDB</span>
+                        <span class="tag">Modélisation MCD/MLD</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Programmation / Algorithmique</h3>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">POO (Programmation Orientée Objet)</span>
+                        <span class="tag">Git / GitHub</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Culture Réseau & SI</h3>
+                    <div class="tags">
+                        <span class="tag">Bases des Réseaux</span>
+                        <span class="tag">Cybersécurité (Bases)</span>
+                        <span class="tag">RGPD & Droit IT</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <h2>Me Contacter</h2>
+            <div class="contact-container">
+                
+                <div class="contact-info">
+                    <h3>Coordonnées</h3>
+                    <p style="margin-top: 1rem; color: var(--text-dim);">Disponible pour un stage en développement d'applications.</p>
+                    <p style="margin-top: 1rem;"><strong>Email :</strong> ton.email@example.com</p>
+                    <p style="margin-top: 0.5rem;"><strong>LinkedIn :</strong> linkedin.com/in/ton-profil</p>
+                </div>
+
+                <form>
+                    <input type="text" placeholder="Nefflier" required>
+                    <input type="email" placeholder="neffliercorentin@gmail.com" required>
+                    <textarea rows="4" placeholder="Votre message..." required></textarea>
+                    <button type="submit" class="btn">Envoyer</button>
+                </form>
+
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Animation du prénom
+        const nameText = "Corentin";
+        let index = 0;
+        const speed = 100;
+
+        function typeWriter() {
+            if (index < nameText.length) {
+                document.getElementById("name").innerHTML += nameText.charAt(index);
+                index++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        window.onload = typeWriter;
+    </script>
+</body>
+</html>
